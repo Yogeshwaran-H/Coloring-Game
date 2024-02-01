@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painting</title>
+    <script src="https://unpkg.com/konva@9.2.1/konva.min.js"></script>
+    <style>
+        #text{
+            margin-bottom: 20px;
+            color:white;
+        }
+        body{
+            background-image: url("space.jpg");
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="text"><strong>Give some color to this rocket and let it fly into space</strong></div>
+    <div id="container"></div>
+    <script>
+        let stage=new Konva.Stage({
+            width:innerWidth,
+            height:innerHeight,
+            container:"container",
+        });
+        var layer=new Konva.Layer();
+        let rectbody=new Konva.Rect({
+            x:250,
+            y:130,
+            width:130,
+            height:130,
+            fill:"white",
+            stroke:"black",
+            strokeWidth:4,
+        });
+        let rectbody2=new Konva.Rect({
+            x:250,
+            y:260,
+            width:130,
+            height:130,
+            fill:"white",
+            stroke:"black",
+            strokeWidth:4,
+        })
+        let cirbody=new Konva.Circle({
+            x:315,
+            y:195,
+            radius:50,
+            fill:"white",
+            stroke:"black",
+            strokeWidth:4,
+        });
+        let tri=new Konva.RegularPolygon({
+            x:315,
+            y:92,
+            sides:3,
+            radius:75,
+            fill:"white",
+            stroke:"black",
+            strokeWidth:4,
+        });
+        let side1=new Konva.Line({
+            points:[250,300,170,390,250,390],
+            stroke:"black",
+            fill:"white",
+            strokeWidth:4,
+            closed:true,
+        });
+        let side2=new Konva.Line({
+            points:[380,300,460,390,380,390],
+            stroke:"black",
+            strokeWidth:4,
+            fill:"white",
+            closed:true,
+        })
+        let smoke1=new Konva.Line({
+            points:[270,390,255,480,290,480],
+            stroke:"black",
+            fill:"white",
+            strokeWidth:4,
+            closed:true,
+            lineJoin:"round",
+        });
+        let smoke2=new Konva.Line({
+            points:[320,390,300,480,340,480],
+            stroke:"black",
+            strokeWidth:4,
+            closed:true,
+            fill:"white",
+            lineJoin:"round",
+        });
+        let smoke3=new Konva.Line({
+            points:[360,390,350,480,380,480],
+            stroke:"black",
+            strokeWidth:4,
+            closed:true,
+            fill:"white",
+            lineJoin:"round",
+        })
+        let colorarr=["#FF2400","#f9d70b","#FF69B4","purple"];
+        var circlecolor;
+        var cfind={color:""};
+        colorarr.map(function(color,index){
+            circlecolor=new Konva.Circle({
+                x:1000,
+                y:50+index*120,
+                radius:50,
+                fill:`${color}`,
+                name:color+index,
+            });
+            layer.add(circlecolor);
+            circlecolor.on("click",function(){
+                cfind.color=this.fill();
+            });
+        });
+        rectbody.on("click",function(){
+            this.fill(cfind.color);
+        }); 
+        rectbody2.on("click",function(){
+            this.fill(cfind.color);
+        }); 
+        cirbody.on("click",function(){
+            this.fill(cfind.color);
+        }); 
+        tri.on("click",function(){
+            this.fill(cfind.color);
+        }); 
+        side1.on("click",function(){
+            this.fill(cfind.color);
+        }); 
+        side2.on("click",function(){
+            this.fill(cfind.color);
+        }); 
+        smoke1.on("click",function(){
+            this.fill(cfind.color);
+        }); 
+        smoke2.on("click",function(){
+            this.fill(cfind.color);
+        }); 
+        smoke3.on("click",function(){
+            this.fill(cfind.color);
+        });
+        layer.add(rectbody);
+        layer.add(rectbody2);
+        layer.add(cirbody);
+        layer.add(tri);
+        layer.add(side1);
+        layer.add(side2);
+        layer.add(smoke1);
+        layer.add(smoke2);
+        layer.add(smoke3);
+        stage.add(layer);
+    </script>
+</body>
+</html>
